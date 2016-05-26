@@ -1,0 +1,8 @@
+{
+  "name": "GoodMorningDemo",
+  "private": true,
+  "dependencies": {
+    "gsap": "~1.16.0",
+    "pixi": "~3.0.0"
+  }
+}
