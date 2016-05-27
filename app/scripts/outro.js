@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // background color for the app
     var bgColor = 0xFFFFFF;
-    //
+
+    // options for the renderer
     var rendererOptions = {
         antialiasing: false,
         transparent: false,
@@ -8,84 +10,23 @@ document.addEventListener('DOMContentLoaded', function() {
         autoResize: true,
         backgroundColor: bgColor,
     }
-    var size = [1920, 1080];
-    var ratio = size[0] / size[1];
+
     PixiGame.renderer = new PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, rendererOptions);
     PixiGame.renderer.view.setAttribute('class', 'renderer');
     PixiGame.renderer.resize(window.innerWidth, window.innerHeight);
     document.body.appendChild(PixiGame.renderer.view);
 
-
-    //
+    // initialize the stage
     PixiGame.stage = new PIXI.Container();
-    // PixiGame.stage.scale.x = 0.5;
-    // PixiGame.stage.scale.y = 0.5;
 
-
-    //
     PixiGame.sceneController = new PixiGame.SceneController(PixiGame.GameScene);
 
-    //
+
     PixiGame.gameLoopController = new PixiGame.GameLoopController();
     PixiGame.gameLoopController.start();
-
-    window.addEventListener("resize", scaleGameScene, false);
-    // function scaleGameScene() {
-    //
-    // }
-    // function scaleGameScene() {
-    // 	screenH = window.innerWidth;
-    // 	screenW = window.innerHeight;
-    // 	if (screenH >= 320 && screenH <= 480) {
-    // 			console.log("ScreenHeight v1: " + screenH);
-    // 			PixiGame.stage.scale.x = 0.55;
-    // 			PixiGame.stage.scale.y = 0.55;
-    // 	} else if (screenH >= 481 && screenH <= 520) {
-    // 			PixiGame.stage.scale.x = 0.65;
-    // 			PixiGame.stage.scale.y = 0.65;
-    // 	} else if (screenH >= 521 && screenH <= 570) {
-    // 			console.log("ScreenHeight v2: " + screenH);
-    // 			PixiGame.stage.scale.x = 0.7;
-    // 			PixiGame.stage.scale.y = 0.7;
-    // 	} else if (screenH >= 571 && screenH <= 640) {
-    // 			PixiGame.stage.scale.x = 0.7;
-    // 			PixiGame.stage.scale.y = 0.7;
-    // 	} else if (screenH >= 641 && screenH <= 900) {
-    // 			PixiGame.stage.scale.x = 0.8;
-    // 			PixiGame.stage.scale.y = 0.8;
-    // 	} else {
-    // 			console.log("ScreenHeight v4: " + screenH);
-    // 			PixiGame.stage.scale.x = 1.2;
-    // 			PixiGame.stage.scale.y = 1.2;
-    // 	}
-    // }
-    function doOnOrientationChange() {
-        switch (window.orientation || window.mozOrientation || window.msOrientation) {
-            case 90:
-                PixiGame.stage.position.set(window.innerWidth / 2, window.innerHeight / 2);
-                PixiGame.renderer.resize(window.innerWidth, window.innerHeight);
-                scaleGameScene();
-                alert('Flip the phone')
-                PixiGame.gameLoopController.pause();
-                break;
-            default:
-                // swal.close(); // This might interfere with other sweeet alerts?
-                setTimeout(function() {
-                    PixiGame.stage.position.set(window.innerWidth / 2, window.innerHeight / 2);
-                    PixiGame.renderer.resize(window.innerWidth, window.innerHeight);
-                    // scaleGameScene();
-                    PixiGame.gameLoopController.start();
-                }, 100);
-                break;
-        }
-    }
-
-    window.addEventListener('orientationchange', doOnOrientationChange);
-
-    // Initial execution if needed
-    doOnOrientationChange();
 });
-// var mobile = PixiGame.mobileCheck;
+
+// this function checks if the device being used is a mobile or not
 window.mobilecheck = function() {
     PixiGame.mobileCheck = false;
     (function(a) {

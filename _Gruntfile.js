@@ -32,12 +32,12 @@ module.exports = function(grunt) {
     };
 
     var srcFiles = [
-        '<%= config.app %>/scripts/font-loader.js',
         '<%= config.app %>/scripts/intro.js',
         '<%= config.app %>/scripts/controller/game-loop-controller.js',
         '<%= config.app %>/scripts/controller/scene-controller.js',
+        '<%= config.app %>/scripts/scene/main-menu-scene.js',
         '<%= config.app %>/scripts/scene/game-scene.js',
-        '<%= config.app %>/scripts/outro.js',
+        '<%= config.app %>/scripts/outro.js'
     ];
 
     // Define the configuration for all the tasks
@@ -47,6 +47,7 @@ module.exports = function(grunt) {
         config: config,
 
         pkg: grunt.file.readJSON('package.json'),
+
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             bower: {
@@ -89,12 +90,11 @@ module.exports = function(grunt) {
             },
             heroku: {
                 options: {
-                  remote: 'https://git.heroku.com/korvkast.git',
+                    remote: 'https://git.heroku.com/korvkast.git',
                     branch: 'master'
                 }
             }
          },
-
         // Concatenate all of the js files in to one
         concat: {
             dist: {
@@ -109,7 +109,7 @@ module.exports = function(grunt) {
                 port: 9000,
                 open: true,
                 livereload: 35729,
-                hostname: '0.0.0.0'
+                hostname: ''
             },
             livereload: {
                 options: {
@@ -145,12 +145,7 @@ module.exports = function(grunt) {
                     dot: true,
                     src: [
                         '.tmp',
-                        // '<%= config.dist %>/*',
-                        '!<%= config.dist %>/.git{,*/}*',
-                        '!<%= config.dist %>/Procfile',
-                        '!<%= config.dist %>/package.json',
-                        '!<%= config.dist %>/web.js',
-                        '!<%= config.dist %>/node_modules'
+                        '<%= config.dist %>/*'
                     ]
                 }]
             },
@@ -207,7 +202,7 @@ module.exports = function(grunt) {
                 min: true,
                 transform: function(filepath) {
                     var e = ext(filepath);
-                    if (e === 'css' || e === 'fonts') {
+                    if (e === 'css') {
                         return '<link rel="stylesheet" href=".' + filepath + '">';
                     } else if (e === 'js') {
                         return '<script src=".' + filepath + '"></script>';
@@ -254,7 +249,6 @@ module.exports = function(grunt) {
                     cwd: '<%= config.app %>',
                     dest: '<%= config.dist %>',
                     src: [
-                        // 'fonts/*.ttf',
                         '*.{ico,json,txt}',
                         '{,*/}*.html',
                         '**/*.json',
@@ -276,24 +270,6 @@ module.exports = function(grunt) {
                 cwd: '<%= config.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
-            },
-            ttf: {
-                expand: true,
-                dot: true,
-                cwd: '<%= config.app %>/fonts',
-                dest: '.tmp/fonts/',
-                // flatten: true,
-                // src: '{,*/}*.ttf'
-                src: '{,*/}*.ttf'
-            },
-            ttf: {
-                expand: true,
-                dot: true,
-                cwd: '<%= config.app %>/fonts',
-                dest: '.tmp/fonts/',
-                // flatten: true,
-                // src: '{,*/}*.ttf'
-                src: '{,*/}*.woff2'
             }
         },
 
@@ -356,7 +332,6 @@ module.exports = function(grunt) {
         'wiredep'
     ]);
     grunt.registerTask('deploy', ['buildcontrol']);
-
     // release task
     grunt.registerTask('release', 'bump version, build, commit, tag, push', function(versionType) {
         grunt.task.run(['bump-only:' + (versionType || ''), 'default', 'bump-commit']);
