@@ -23,6 +23,7 @@ PixiGame.GameScene.prototype.setup = function() {
         // this.displaySausage();
         // this.addMotionEvent(throwing, sausage);
     } else {
+
         typeOfDevice = "desktop";
         // this.displaySausage();
         this.displayTargets();
