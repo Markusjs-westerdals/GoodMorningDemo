@@ -35,7 +35,6 @@ PixiGame.GameScene.prototype.setup = function() {
 PixiGame.GameScene.prototype.addMotionEvent = function(e) {
     // this is data for Android. Not sure how it is on iOS.
     if (e.accelerationIncludingGravity.x < -15) {
-        document.getElementById('rotation').innerHTML = e.rotationRate.gamma + " " + e.rotationRate.beta + " " + e.rotationRate.alpha;
         PixiGame.GameScene.prototype.throwSausage();
     }
 }
