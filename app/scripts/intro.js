@@ -6,7 +6,7 @@ var PixiGame = PixiGame || {};
 // Used by pixi
 PixiGame.stage = null;
 PixiGame.renderer = null;
-
+PixiGame.mobileCheck = false;
 // Game Loop Controller
 PixiGame.gameLoopController = null;
 

@@ -81,7 +81,20 @@ module.exports = function(grunt) {
                 tasks: ['injector', 'wiredep']
             }
         },
-
+        buildcontrol: {
+            options: {
+                dir: 'dist',
+                commit: true,
+                push: true,
+                message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+            },
+            heroku: {
+                options: {
+                    remote: 'git@heroku.com:gullballen.git',
+                    branch: 'master'
+                }
+            }
+         },
         // Concatenate all of the js files in to one
         concat: {
             dist: {
@@ -96,7 +109,7 @@ module.exports = function(grunt) {
                 port: 9000,
                 open: true,
                 livereload: 35729,
-                hostname: 'localhost'
+                hostname: ''
             },
             livereload: {
                 options: {

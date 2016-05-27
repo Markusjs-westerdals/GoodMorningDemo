@@ -36,7 +36,10 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "lodash": "^2.4.1"
+    "grunt": "^0.4.5",
+    "load-grunt-tasks": "^0.4.0",
+    "lodash": "^2.4.1",
+    "time-grunt": "^0.4.0"
   },
   "version": "1.0.0",
   "description": "A demo for Good Morning Oslo.",
@@ -45,5 +48,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Markusjs/GoodMorningDemo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Markusjs/GoodMorningDemo/issues"
+  },
+  "homepage": "https://github.com/Markusjs/GoodMorningDemo#readme"
 }
