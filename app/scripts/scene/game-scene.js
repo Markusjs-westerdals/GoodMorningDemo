@@ -169,15 +169,15 @@ PixiGame.GameScene.prototype.hittargets = function() {
     var targetY = 80;
     if (randomTarget == 1) {
         target = target1;
-        sausageToX = window.innerWidth / 3.5;
-        sausageToY = 300;
+        sausageToX = window.innerWidth / 3.2;
+        sausageToY = 280;
         sausageFromX = sausage.position.x - 600;
         sausageFromY = window.innerHeight + 50;
     } else {
         target = target2;
         targetY = 80;
-        sausageToX = window.innerWidth - 300;
-        sausageToY = 300;
+        sausageToX = window.innerWidth - 370;
+        sausageToY = 280;
         sausageFromX = sausage.position.x + 600;
         sausageFromY = window.innerHeight + 50;
     }
